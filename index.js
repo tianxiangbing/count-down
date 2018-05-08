@@ -88,11 +88,34 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         }
                     } else {
                         // console.log(targetSec,second)
-                        item.update(targetSec - second);
+                        var ms = targetSec - second;
+                        item.update(_this2.formatTime(ms * 1000));
                     }
                 });
                 clearTimeout(timer);
             }, 0);
+        },
+
+        /* 
+        * 毫秒转化时分秒毫秒 
+        */
+        formatTime: function formatTime(mss) {
+            if (mss <= 0) {
+                return '00';
+            }
+            var days = parseInt(mss / (1000 * 60 * 60 * 24));
+            var hours = parseInt(mss % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+            var minutes = parseInt(mss % (1000 * 60 * 60) / (1000 * 60));
+            var seconds = mss % (1000 * 60) / 1000;
+            var returnValue = '';
+            if (days > 0) {
+                returnValue += days + "天";
+            }
+            if (hours > 0) {
+                returnValue += hours + "小时";
+            }
+            returnValue += (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
+            return returnValue;
         }
     };
     return CountDown;
