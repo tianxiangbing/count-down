@@ -7,4 +7,9 @@ CountDown.init({date:'2018/05/08 16:23',callback:()=>{
     console.log('第二个ok')
 },update:(count)=>{
     console.log('第二个还剩:'+count +'s')
+}})
+CountDown.init({date:20,callback:()=>{
+    console.log('第三个ok')
+},update:(count)=>{
+    console.log('第三个还剩:'+count +'s')
 }});

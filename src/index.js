@@ -26,13 +26,31 @@
         arr:[],
         //这里是否可以考虑传进来系统的当前日期作为基准值.
         init({ date, callback = () => { }, update = () => { } }) {
+            //对传递的时间作兼容处理，可接收时间对象和时间秒
+            if(typeof date ==='object'){
+                //时间对象
+                date = date.getTime();
+            }else
+            if(typeof date ==='number'){
+                if(String(date).length >8){
+                    date  = new Date(date);
+                }else{
+                    let now  = +new Date();
+                    date = now + date*1000;
+                    console.log(date,111)
+                }
+            }else if(typeof date ==='string') {
+                let d = new Date(date);
+                date = d.getTime()
+            }
             let obj = {
-                date:typeof date ==='object' ?date:new Date(date),
+                date,
                 callback,
                 update
             };
             this.arr.push(obj);
             if(!this.timer){
+                // this.update();
                 this.timer = setInterval(()=>{
                     this.update();
                 },1000)
@@ -40,24 +58,27 @@
             return this;
         }
         ,update(){
+            let now = new Date();
+            let second = Math.ceil(now.getTime()/1000);
+            console.log('second',second);
             let timer = setTimeout(()=>{
-                clearTimeout(timer);
-                let now = new Date();
-                let second = parseInt(now.getTime()/1000);
                 this.arr.forEach((item,idx)=>{
-                    let targetSec = parseInt(item.date.getTime()/1000) ;
+                    let targetSec = Math.ceil(item.date/1000) ;
                     if(second>= targetSec){
                         //到时
                         item.callback();
                         this.arr.splice(idx, 1);
                         if(this.arr.length === 0){
+                            console.log('over')
                             clearInterval(this.timer);
                         }
                     }else{
+                        console.log(targetSec,second)
                         item.update(targetSec - second);
                     }
                 });
-            })
+                clearTimeout(timer);
+            },0)
         }
     }
     return CountDown;
