@@ -1,9 +1,10 @@
 {
   "name": "js-count-down",
-  "version": "0.0.0",
-  "description": "js DataAdapter",
+  "version": "0.0.1",
+  "description": "js count down",
   "main": "index.js",
   "scripts": {
+    "build": "babel src -d .",
     "prepublish": "babel src -d .",
     "test": "node example/index.js"
   },
