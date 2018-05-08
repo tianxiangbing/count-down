@@ -74,7 +74,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
             var now = new Date();
             var second = Math.ceil(now.getTime() / 1000);
-            console.log('second', second);
+            // console.log('second',second);
             var timer = setTimeout(function () {
                 _this2.arr.forEach(function (item, idx) {
                     var targetSec = Math.ceil(item.date / 1000);
@@ -83,11 +83,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         item.callback();
                         _this2.arr.splice(idx, 1);
                         if (_this2.arr.length === 0) {
-                            console.log('over');
+                            // console.log('over')
                             clearInterval(_this2.timer);
                         }
                     } else {
-                        console.log(targetSec, second);
+                        // console.log(targetSec,second)
                         item.update(targetSec - second);
                     }
                 });

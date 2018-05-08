@@ -60,7 +60,7 @@
         ,update(){
             let now = new Date();
             let second = Math.ceil(now.getTime()/1000);
-            console.log('second',second);
+            // console.log('second',second);
             let timer = setTimeout(()=>{
                 this.arr.forEach((item,idx)=>{
                     let targetSec = Math.ceil(item.date/1000) ;
@@ -69,11 +69,11 @@
                         item.callback();
                         this.arr.splice(idx, 1);
                         if(this.arr.length === 0){
-                            console.log('over')
+                            // console.log('over')
                             clearInterval(this.timer);
                         }
                     }else{
-                        console.log(targetSec,second)
+                        // console.log(targetSec,second)
                         item.update(targetSec - second);
                     }
                 });
