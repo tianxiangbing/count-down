@@ -17,7 +17,7 @@
     } else if (typeof define === "function" && define.amd) {
         define(definition);
     } else {
-        DataAdapter = definition();
+        CountDown = definition();
     }
 })(function () {
     "use strict";
