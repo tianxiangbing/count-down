@@ -39,13 +39,30 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                 _ref$update = _ref.update,
                 update = _ref$update === undefined ? function () {} : _ref$update;
 
+            //对传递的时间作兼容处理，可接收时间对象和时间秒
+            if ((typeof date === "undefined" ? "undefined" : _typeof(date)) === 'object') {
+                //时间对象
+                date = date.getTime();
+            } else if (typeof date === 'number') {
+                if (String(date).length > 8) {
+                    date = new Date(date);
+                } else {
+                    var now = +new Date();
+                    date = now + date * 1000;
+                    console.log(date, 111);
+                }
+            } else if (typeof date === 'string') {
+                var d = new Date(date);
+                date = d.getTime();
+            }
             var obj = {
-                date: (typeof date === "undefined" ? "undefined" : _typeof(date)) === 'object' ? date : new Date(date),
+                date: date,
                 callback: callback,
                 update: update
             };
             this.arr.push(obj);
             if (!this.timer) {
+                // this.update();
                 this.timer = setInterval(function () {
                     _this.update();
                 }, 1000);
@@ -55,24 +72,27 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
         update: function update() {
             var _this2 = this;
 
+            var now = new Date();
+            var second = Math.ceil(now.getTime() / 1000);
+            console.log('second', second);
             var timer = setTimeout(function () {
-                clearTimeout(timer);
-                var now = new Date();
-                var second = parseInt(now.getTime() / 1000);
                 _this2.arr.forEach(function (item, idx) {
-                    var targetSec = parseInt(item.date.getTime() / 1000);
+                    var targetSec = Math.ceil(item.date / 1000);
                     if (second >= targetSec) {
                         //到时
                         item.callback();
                         _this2.arr.splice(idx, 1);
                         if (_this2.arr.length === 0) {
+                            console.log('over');
                             clearInterval(_this2.timer);
                         }
                     } else {
+                        console.log(targetSec, second);
                         item.update(targetSec - second);
                     }
                 });
-            });
+                clearTimeout(timer);
+            }, 0);
         }
     };
     return CountDown;
