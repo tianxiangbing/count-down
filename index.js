@@ -11,7 +11,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
  * Contact: 55342775@qq.com
  * desc: 倒计时
  * 请使用https://github.com/tianxiangbing/count-down 上的代码
- * npm install js-count-down --save
+ * npm install js-count-downx --save
  */
 (function (definition) {
     // 
