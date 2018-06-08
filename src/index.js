@@ -71,6 +71,7 @@
                         if (this.arr.length === 0) {
                             // console.log('over')
                             clearInterval(this.timer);
+                            this.timer = null;
                         }
                     } else {
                         // console.log(targetSec,second)
@@ -79,6 +80,7 @@
                     }
                 });
                 clearTimeout(timer);
+                timer = null;
             }, 0)
         },
         /* 

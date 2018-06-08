@@ -1,9 +1,9 @@
 const CountDown = require('../src/index');
-CountDown.init({date:'2018/05/08 21:23',callback:()=>{
+CountDown.init({date:'2018/06/08 21:23',callback:()=>{
     console.log('第一个ok')
 },update:(count)=>{
     console.log('第一个还剩:'+count )
-}}).init({date:'2018/05/09 22:24',callback:()=>{
+}}).init({date:1528437024045,callback:()=>{
     console.log('第二个ok')
 },update:(count)=>{
     console.log('第二个还剩:'+count )

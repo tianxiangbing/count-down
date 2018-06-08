@@ -1,6 +1,6 @@
 {
   "name": "js-count-downx",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "js count down",
   "main": "index.js",
   "scripts": {

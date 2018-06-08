@@ -85,6 +85,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                         if (_this2.arr.length === 0) {
                             // console.log('over')
                             clearInterval(_this2.timer);
+                            _this2.timer = null;
                         }
                     } else {
                         // console.log(targetSec,second)
@@ -93,6 +94,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
                     }
                 });
                 clearTimeout(timer);
+                timer = null;
             }, 0);
         },
 

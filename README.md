@@ -2,6 +2,8 @@
 javascript CountDown,针对同时统计多个倒计时作处理，分别处理，使用同一个计时器。
 # npm
     npm install --save  js-count-downx
+
+![](example/demo.gif)
 # Use
 ```js
 const CountDown = require('../src/index');
